@@ -20,7 +20,8 @@
         <!-- le bouton d'inscription est désactivé lorsque isLoading est true -->
         <NButton :disabled="isLoading" type="primary" attr-type="submit"
           >Se connecter</NButton
-        ><br />
+        >
+        <br />
         <RouterLink to="/inscription"> Pas de compte ? S'inscrire</RouterLink>
       </NForm>
     </div>
