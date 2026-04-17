@@ -24,9 +24,19 @@ const { opponentBoard, myBoard } = storeToRefs(gameStore)
 .game-page {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 16px;
+  gap: 12px;
+  padding: 8px;
+  width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* RG4 : lisible sur mobile */
+@media (max-width: 600px) {
+  .game-page {
+    padding: 4px;
+    gap: 8px;
+  }
 }
 </style>

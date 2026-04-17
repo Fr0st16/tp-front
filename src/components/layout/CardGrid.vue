@@ -1,5 +1,5 @@
 <template>
-  <!-- RG1 : champ de recherche au-dessus de la grille -->
+  <!-- RG1 ticket4 : champ de recherche au-dessus de la grille -->
   <div class="card-grid-wrapper">
     <NInput
       v-model:value="search"
@@ -7,17 +7,17 @@
       clearable
       style="margin-bottom: 10px"
     />
-    <div class="grid">
-      <!-- RG2 : filtrée en temps réel par nom -->
-      <CardItem
-        v-for="card in filteredCards"
-        :key="card.id"
-        :card="card"
-        :selected="props.modelValue.includes(card.id)"
-        :disabled="isDisabled(card.id)"
-        @click="toggleCard(card.id)"
-      ></CardItem>
-    </div>
+    <!-- RG1 ticket5 : colonnes adaptées à la largeur de l'écran -->
+    <NGrid responsive="screen" cols="2 s:3 m:4 l:6" :x-gap="8" :y-gap="8">
+      <NGridItem v-for="card in filteredCards" :key="card.id">
+        <CardItem
+          :card="card"
+          :selected="props.modelValue.includes(card.id)"
+          :disabled="isDisabled(card.id)"
+          @click="toggleCard(card.id)"
+        />
+      </NGridItem>
+    </NGrid>
   </div>
 </template>
 
@@ -78,11 +78,5 @@ const isDisabled = (cardId: number) => {
 .card-grid-wrapper {
   display: flex;
   flex-direction: column;
-}
-
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
 }
 </style>

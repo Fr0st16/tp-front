@@ -1,22 +1,36 @@
 <template>
-  <div v-for="deck in decks" :key="deck.id">
-    {{ deck.name }} - {{ deck.cards.length }} cartes
-
-    <div class="boutons">
-      <NButton type="primary" @click="router.push('/decks/' + deck.id)">
-        Voir
-      </NButton>
-      <NButton type="primary" @click="router.push('/decks/' + deck.id)">
-        Modifier
-      </NButton>
-      <NButton type="error" @click="handleDeleted(deck.id)">
-        Supprimer
+  <div class="deck-list">
+    <!-- RG2 : colonnes adaptées à la largeur de l'écran -->
+    <NGrid responsive="screen" cols="1 m:2 l:3" :x-gap="16" :y-gap="16">
+      <NGridItem v-for="deck in decks" :key="deck.id">
+        <NCard :title="deck.name" size="small">
+          <template #footer>
+            <div class="boutons">
+              <NButton
+                type="primary"
+                size="small"
+                @click="router.push('/decks/' + deck.id)"
+              >
+                Modifier
+              </NButton>
+              <NButton
+                type="error"
+                size="small"
+                @click="handleDeleted(deck.id)"
+              >
+                Supprimer
+              </NButton>
+            </div>
+          </template>
+          {{ deck.cards.length }} cartes
+        </NCard>
+      </NGridItem>
+    </NGrid>
+    <div style="margin-top: 16px">
+      <NButton type="warning" @click="router.push('/decks/create')">
+        Créer un deck
       </NButton>
     </div>
-  </div>
-
-  <div class="boutons" @click="router.push('/decks/create')">
-    <NButton type="warning" attr-type="submit"> Créer </NButton>
   </div>
 </template>
 
@@ -46,9 +60,13 @@ const handleDeleted = async (id: number) => {
 </script>
 
 <style scoped>
+.deck-list {
+  width: 100%;
+}
+
 .boutons {
   display: flex;
   gap: 8px;
-  margin-top: 4px;
+  flex-wrap: wrap;
 }
 </style>

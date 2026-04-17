@@ -77,5 +77,7 @@ const canAttack = computed(() => {
 .actions {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 </style>

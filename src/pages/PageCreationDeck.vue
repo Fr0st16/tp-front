@@ -1,10 +1,19 @@
 <template>
-  <NInput v-model:value="deckName" placeholder="Entrer le nom du deck" />
-  <p>{{ selectedCards.length }} / 10 cartes sélectionnées</p>
-  <NButton :disabled="isSubmitDisabled" type="primary" @click="handleSubmit">
-    Créer
-  </NButton>
-  <CardGrid v-model="selectedCards" :cards="cards" :max-selected="10" />
+  <!-- RG3 : formulaire pleine largeur mobile, contraint sur grand écran -->
+  <div class="form-page">
+    <div class="form-header">
+      <NInput v-model:value="deckName" placeholder="Entrer le nom du deck" />
+      <p>{{ selectedCards.length }} / 10 cartes sélectionnées</p>
+      <NButton
+        :disabled="isSubmitDisabled"
+        type="primary"
+        @click="handleSubmit"
+      >
+        Créer
+      </NButton>
+    </div>
+    <CardGrid v-model="selectedCards" :cards="cards" :max-selected="10" />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -38,3 +47,20 @@ const handleSubmit = async () => {
   router.push('/')
 }
 </script>
+
+<style scoped>
+.form-page {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 480px;
+}
+</style>
