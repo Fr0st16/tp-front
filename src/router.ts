@@ -3,6 +3,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import HomePage from './pages/HomePage.vue'
 import PageConnexion from './pages/PageConnexion.vue'
+import PageCreationDeck from './pages/PageCreationDeck.vue'
+import PageEdition from './pages/PageEdition.vue'
+import PageGame from './pages/PageGame.vue'
 import PageInscription from './pages/PageInscription.vue'
 import { useAuthStore } from './stores/auth.store'
 
@@ -18,6 +21,9 @@ export const ROUTES = {
   HOME: '/',
   CONNEXION: '/connexion',
   INSCRIPTION: '/inscription',
+  CREATIONDECK: '/decks/create',
+  EDITION: '/decks/:id',
+  GAME: '/game',
 } as const
 
 const routes = [
@@ -30,6 +36,22 @@ const routes = [
   {
     path: ROUTES.INSCRIPTION,
     component: PageInscription,
+    meta: { requiresAuth: false },
+  },
+  {
+    path: ROUTES.CREATIONDECK,
+    component: PageCreationDeck,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: ROUTES.EDITION,
+    component: PageEdition,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: ROUTES.GAME,
+    component: PageGame,
+    meta: { requiresAuth: true },
   },
 ]
 
